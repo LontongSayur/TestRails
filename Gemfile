@@ -14,7 +14,6 @@ group :development, :test do
   gem 'spork'
 end
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -32,9 +31,15 @@ group :test do
   gem 'rb-fchange', '0.0.5'
   gem 'rb-notifu', '0.0.4'
   gem 'win32console', '1.3.0'
+  #gem 'win32-file'
 end
 
 gem 'pg', '0.12.2'
+
+
+
+require 'rbconfig'
+gem 'wdm', '>= 0.1.0' if RbConfig::CONFIG['target_os'] =~ /mswin|mingw/i
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
