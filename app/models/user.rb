@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   before_save { email.downcase! }
-  after_validation { self.error.messages.delete(:password_digest) }
+  after_validation { self.errors.messages.delete(:password_digest)}
 end

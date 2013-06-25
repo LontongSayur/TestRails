@@ -23,16 +23,17 @@ describe "UserPages" do
       end
 
       describe "after submission" do
-        before { visit signup_path }
+        before { click_button submit }
         it { should have_selector('title', text: 'Sign Up') }
         it { should have_content('error') }
       end
     end
 
     describe "with valid information" do
+      let(:name) { "Example user" }
       before do
-        fill_in "Name",         with: "Example User"
-        fill_in "Email",        with: "user@example.com"
+        fill_in "Name",         with: :name
+        fill_in "Email",        with: "user@example.comxx"
         fill_in "Password",     with: "foobar"
         fill_in "Confirmation", with: "foobar"
       end
@@ -40,10 +41,10 @@ describe "UserPages" do
       it "should create a user" do
         expect { click_button submit }.to change(User, :count).by(1)
       end
-
+      
       describe "after saving the user" do
         before { click_button submit }
-        it { should have_selector('title', text: user.name) }
+        it { should have_selector('title', text: :name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
     end
