@@ -17,7 +17,7 @@ group :development, :test do
   gem 'guard-spork'
   gem 'childprocess'
   gem 'spork'
-  #gem "better_errors"
+  gem "better_errors"
 end
 
 group :development do
