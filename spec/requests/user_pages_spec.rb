@@ -95,4 +95,23 @@ describe "UserPages" do
       end
     end
   end
+  
+  describe "index" do
+    before do
+      @user = FactoryGirl.create(:user)
+      sign_in @user
+      FactoryGirl.create(:user, name: 'bob', email: 'bob@bob.bob')
+      FactoryGirl.create(:user, name: 'ben', email: 'ben@ben.ben')      
+      visit users_path
+    end
+    
+    it { should have_selector('title', text: 'All users')}  
+    it { should have_selector('h1', text: 'All users')}
+    
+    it "should list each user" do
+      User.all.each do |user| 
+        page.should have_selector('li', text: user.name)
+      end
+    end
+  end
 end
